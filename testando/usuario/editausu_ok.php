@@ -5,6 +5,13 @@ include_once "../topo.php";
 	
 	$obj->ID =$_POST['ID'];
 	$obj->Nome = $_POST['Nome'];
+	$obj->E_mail = $_POST['E_mail'];
+	$obj->Nascimento = $_POST['Nascimento'];
+	$obj->RG = $_POST['RG'];
+	$obj->Tipo = $_POST['Tipo'];
+	$obj->Senha = $_POST['Senha'];
+	$obj->CPF = $_POST['CPF'];
+	$obj->Endereco = $_POST['Endereco'];
 	$obj->editar();
 	$resultado = $obj->editar();
 	if ($resultado)

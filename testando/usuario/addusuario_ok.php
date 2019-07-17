@@ -8,7 +8,7 @@ include_once "../topo.php";
 	$obj->Nascimento=$_POST['Nascimento'];
 	$obj->RG=$_POST['RG'];
 	$obj->Tipo=$_POST['Tipo'];
-	$obj->Senha=$_POST['Senha'];
+	$obj->Senha= md5($_POST['Senha']);
 	$obj->CPF=$_POST['CPF'];
 	$obj->Endereco=$_POST['Endereco'];
 	$resultado = $obj->adicionar();

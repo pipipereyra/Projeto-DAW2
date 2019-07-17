@@ -4,7 +4,7 @@
 	
 	$obj = new Usuarios();
 	$obj->E_mail =$_POST['email'];
-	$obj->Senha =$_POST['senha'];
+	$obj->Senha = md5($_POST['senha']);
 	//var_dump($_POST['senha']);
 	$login= $obj->login();
 	require_once '../app/init.php';
