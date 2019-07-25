@@ -3,22 +3,27 @@ include_once "../topo.php";
 	include_once "../class/Usuarios.class.php";
 	$obj = new Usuarios();
 	//$obj->ID=$_POST['ID'];
-	$obj->Nome = $_POST['Nome'];
-	$obj->E_mail=$_POST['E_mail'];
-	$obj->Nascimento=$_POST['Nascimento'];
-	$obj->RG=$_POST['RG'];
-	$obj->Tipo=$_POST['Tipo'];
-	$obj->Senha= md5($_POST['Senha']);
-	$obj->CPF=$_POST['CPF'];
-	$obj->Endereco=$_POST['Endereco'];
+	$obj->Nome = strip_tags($_POST['Nome']);
+	$obj->E_mail= strip_tags($_POST['E_mail']);
+	$obj->Nascimento= strip_tags($_POST['Nascimento']);
+	$obj->RG= strip_tags($_POST['RG']);
+	$obj->Tipo= strip_tags($_POST['Tipo']);
+	$obj->Senha= strip_tags(md5($_POST['Senha']));
+	$obj->CPF= strip_tags($_POST['CPF']);
+	$obj->Endereco= strip_tags($_POST['Endereco']);
 	$resultado = $obj->adicionar();
-	if ($resultado)
-		echo "Adicionado com sucesso!";
-	else
-		echo "Usuário não pode ser adicionado";
+	if ($resultado){
+		echo "<div style='text-align:center;' class='alert alert-success'> 
+		<strong>Adicionado com sucesso!</strong>
+		</div>";
+		header("Refresh:3; url=listausu.php");}
+	else{
+		echo "<div style='text-align:center;' class='alert alert-danger'>
+		<strong>Usuário não pode ser adicionado!</strong>
+		</div>";
+		header("Refresh:3; url=listausu.php");}
 ?>
 
-<br><button style="margin-left:255px; margin-top:5px;" onclick='window.location.href="../usuario/listausu.php"'>Voltar</button><br>
 
 <?php
 	include_once "../rodape.php";

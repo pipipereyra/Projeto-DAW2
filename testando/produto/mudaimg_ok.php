@@ -13,12 +13,17 @@ include_once "../topo.php";
 	$conectar->Imagem=$name;
 	$resultado=$conectar->editarimagem();
 	if($resultado){
-	echo 'Imagem alterada com sucesso!';
-	}
+		echo "<div style='text-align:center;' class='alert alert-success'> 
+		<strong>Editado com sucesso!</strong>
+		</div>";
+	header("Refresh:3; url=listaprod.php");}
 	else{
-	echo 'Erro ao editar imagem';}
+		echo "<div style='text-align:center;' class='alert alert-danger'>
+		<strong>Imagem não pode ser editada!</strong>
+		</div>";
+		header("Refresh:3; url=listaprod.php");}
 ?>
-	<button style="margin-left:2px; margin-top:5px;" onclick="window.location.href='../produto/listaprod.php'">Voltar</button><br>
+
 <?php
 	include_once "../rodape.php";
 ?>	

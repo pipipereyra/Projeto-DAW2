@@ -7,14 +7,19 @@
 	$obj = new Usuarios();
 	$obj->ID = $_GET['ID'];
 	$resultado = $obj->apagar();
-	if ($resultado)
-		echo "Excluido com sucesso!";
-	else
-		echo "Usuario não pode ser excluido";
+	if ($resultado){
+		echo "<div style='text-align:center;' class='alert alert-success'> 
+		<strong>Excluído com sucesso!</strong>
+		</div>";
+		header("Refresh:3; url=listausu.php");}
+	else{
+		echo "<div style='text-align:center;' class='alert alert-danger'>
+		<strong>Usuário não pode ser excluído!</strong>
+		</div>";
+		header("Refresh:3; url=listausu.php");}
 	
 
 ?>
-<br><button style="margin-left:255px; margin-top:5px;" onclick='window.location.href="listausu.php"'>Voltar</button><br>
 
 <?php
 	include_once "../rodape.php";

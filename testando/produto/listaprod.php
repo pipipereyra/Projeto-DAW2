@@ -14,23 +14,30 @@
 		</div>
 
 	
-	<h2 style="margin-left:10px;">Listar Produtos</h2>
+	<h2 style="text-align: center;">Listar Produtos</h2>
 	<form>
-		<input style= "width: 200px; margin-left:10px" type="text" name="Buscar" placeholder="Buscar"/>
-		<input type="submit" value="Enviar">
-		<button style="margin-left:2px; margin-top:5px;" onclick='window.location.href="listar.php"'>Voltar</button><br>
+		<div class="container mt-3">
+			<div class="input-group mb-3">
+				<input class="form-control" type="text" name="Buscar" placeholder="Buscar"/>
+				<div class="input-group-append">
+					<input class="btn btn-success" style="border:0.5px solid gray; background:#4ECDC4; color: white" type="submit" value="Enviar">
+					<button class="btn btn-success" style="border:0.5px solid gray; background:#4ECDC4; color: white" onclick='window.location.href="listar.php"'>Voltar</button>
+				</div>
+			</div>
+		</div>
 	</form>
 	
 
 <?php
 	$obj = new Produtos;
 	if(isset($_GET['Buscar']))
-		$retorno = $obj->listar('where ID="'.$_GET['Buscar'].'" or Nome like "'.$_GET['Buscar'].'"');
+		$retorno = $obj->listar('where produtos.ID="'.$_GET['Buscar'].'" or produtos.Nome like "%'.$_GET['Buscar'].'%"');
 	else	
 		$retorno = $obj-> listar();
-	echo "<table border style='margin:25px'>
+	echo "<div class='container'>
+	<table class='table table-hover'>
+	
 		<thead>
-			<th>ID</th>
 			<th>Nome</th>
 			<th>Descricao</th>
 			<th>Valor</th>
@@ -45,7 +52,6 @@
 		else {
 			foreach ($retorno as $linha){
 			echo "<tr>
-					<td>$linha->ID</td>
 					<td>$linha->Nome</td>
 					<td>$linha->Descricao</td>
 					<td>$linha->Valor</td>
@@ -57,7 +63,7 @@
 			   </tr>";
 			}
 		}
-		echo "</tbody></table>";
+		echo "</tbody></table></div>";
 		
 		include_once "../rodape.php";
 ?>

@@ -6,11 +6,18 @@
 	$resultado = $obj->retornarunico();
 ?>
 	<form action="editcat_ok.php" method="post">
-			<h2> &nbsp &nbsp &nbsp Editar Categoria &nbsp &nbsp</h2>
-			<span> &nbsp &nbsp &nbsp Edite a categoria:</span><input style= "width: 200px; margin-left:2px" type="text" name= "Nome" value="<?php echo $resultado->Nome;?> "/>
-			<input style= "display:none;" type="text" name= "ID" value="<?php echo $resultado->ID;?> "/>
-			<input type="submit" name="adicionar" value="Editar">
-			<br><button style="margin-left:327px; margin-top:5px;"onclick='window.location.href="listar.php"'>Voltar</button><br>
+			<h2 style="text-align:center;"> &nbsp &nbsp &nbsp Editar Categoria &nbsp &nbsp</h2>
+			<div class="container mt-3">
+				<div class="input-group mb-3">
+					<span style="margin-top:5px;"> &nbsp &nbsp &nbsp Edite a categoria:</span>
+					<input type="text" class="form-control" name= "Nome" value="<?php echo $resultado->Nome;?>"/>
+					<div class="input-group-append">
+						<input style= "display:none;" type="text" name= "ID" value="<?php echo $resultado->ID;?> "/>
+						<button  class="btn btn-primary" style="border:0.5px solid gray; background:#4ECDC4; color: white" type="submit" name="adicionar"	value="Editar">Editar</button><br>
+						<button class="btn btn-success" style="border:0.5px solid gray; background:#4ECDC4; color: white" onclick='window.location.href="listar.php"'>Voltar</button><br>
+					</div>
+				</div>
+			</div>
 		</form>
 
 

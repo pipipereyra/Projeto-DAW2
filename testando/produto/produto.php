@@ -19,36 +19,40 @@
 		</div>
 
 	<form action="addprodutos_ok.php" method="post">
-			<h2> &nbsp &nbsp &nbsp Adicionar Produtos &nbsp &nbsp</h2>
+			<h2 style="text-align:center;"> &nbsp &nbsp &nbsp Adicionar Produtos &nbsp &nbsp</h2>
 		</form>
 	<form class="col-lg-4" method="POST" action="addprod_ok.php" enctype="multipart/form-data">
-  <div class="form-group">
-    <label for="Nome">Nome:</label>
-    <input type="text" class="form-control" id="Nome" name="Nome">
-  </div>
-  <div class="form-group">
-    <label for="Imagem">Imagem:</label>
-    <input type="file" class="form-control" id="Imagem" name="Imagem">
-  </div>
-  <div class="form-group">
-    <label for="Descricao">Descrição</label>
-    <input type="text" class="form-control" id="Descricao" name="Descricao">
-  </div>
-  <div class="form-group">
-    <label for="Valor">Valor:</label>
-    <input type="number" class="form-control" id="Valor" name="Valor">
-  </div>
-    <div class="form-group">
-    <label  for="Categorias">Lista de Categorias</label>
-	<select name='ID_Categoria'><?php echo $listacategorias;?></select>
-  </div>
-  <div class="checkbox">
-    <label><input type="checkbox"> Remember me</label>
-  </div>
-  <button type="submit" class="btn btn-default">Submit</button>
-<button type="submit" class="btn btn-default" onclick='window.location.href="listaprod.php"'>Voltar</button><br>	
-
-  </form>
+		<div class="container mt-3">
+			<div class="input-group mb-3" style="flex-direction: column;/* align-content: center; */align-items: unset;/* margin: auto; */width: 220%;padding-left: 100%;">
+					<div class="input-group-prepend">
+						<label class="input-group-text" for="Nome">Nome:</label>
+						<input type="text" class="form-control" id="Nome" name="Nome">
+					</div>
+					<div class="input-group">
+						<label class="custom-file-label" for="customFile">Imagem:</label>
+						<input type="file" class="custom-file-input" id="Imagem" name="Imagem">
+					</div>
+					<div class="input-group-prepend">
+						<label class="input-group-text">Descrição:</label>
+						<input type="text" class="form-control" id="Descricao" name="Descricao">
+					</div>
+					<div class="input-group-prepend">
+						<label class="input-group-text">Valor:</label>
+						<input type="number" class="form-control" id="Valor" name="Valor">
+					</div>
+					<div class="form-group">
+						<label for="sel1">Selecione a Categoria</label>
+								<select class="form-control" name='ID_Categoria'>
+									<option>
+										<?php echo $listacategorias;?>
+									</option>
+								</select>
+					</div>
+					<button type="submit" class="btn btn-success" style="border:0.5px solid gray; background:#4ECDC4; color: white;">Adicionar</button>
+					<button type="submit" class="btn btn-success" style="border:0.5px solid gray; background:#4ECDC4; color: white;" onclick='window.location.href="listaprod.php"'>Voltar</button>	
+					</div>
+				</div>
+	</form>
   
 
 

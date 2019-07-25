@@ -5,8 +5,9 @@ class Vendas{
 		private $Status;
 		private $Valor_total;
 		private $Forma_pagamento;
-		private $ID_Usuario;
-        private $ID_mesa;
+		private $ID_usuarios;
+		private $ID_mesa;
+		private $nomeUser;
 		private $conexao; //inicia uma conexão com o banco de dados
 		private $tabela; //para facilitar o uso das tabelas no banco(editar, alterar) sem complicações
 	
@@ -26,15 +27,15 @@ class Vendas{
 			$this->$key=$value;
 		}
 		public function adicionar(){
-			$sql = "INSERT INTO $this->tabela (Data_venda, Status, Valor_total, Forma_pagamento, ID_Usuario, ID_mesa) 
-			VALUES('$this->Data_venda', '$this->Status', $this->Valor_total, '$this->Forma_pagamento', $this->ID_Usuario, $this->ID_mesa)";
+			$sql = "INSERT INTO $this->tabela (Data_venda, Status, Valor_total, Forma_pagamento, ID_usuarios, ID_mesa) 
+			VALUES('$this->Data_venda', '$this->Status', $this->Valor_total, '$this->Forma_pagamento', $this->ID_usuarios, $this->ID_mesa)";
 			//echo $sql; para verificar o que esta sendo enviado para o banco
 			$resultado = mysqli_query($this->conexao,$sql);
 			echo $sql;
 			return $resultado;
 		}
 		public function listar($complemento = ""){
-			$sql = "SELECT $this->tabela.*,usuarios.ID as usuarios FROM $this->tabela inner join usuarios on $this->tabela.ID_Usuario=usuarios.ID".$complemento;
+			$sql = "SELECT $this->tabela.*,usuarios.Nome as nomeUser, usuarios.ID as usuarios FROM $this->tabela inner join usuarios on $this->tabela.ID_usuarios=usuarios.ID INNER JOIN mesa on $this->tabela.ID_mesa = mesa.ID ORDER BY Data_venda".$complemento;
 			$resultado = mysqli_query($this->conexao, $sql);
 		 //echo $sql;
 		$retorno = null;
@@ -45,9 +46,9 @@ class Vendas{
 			$obj->Status = $res['Status'];
 			$obj->Valor_total = $res['Valor_total'];
 			$obj->Forma_pagamento = $res['Forma_pagamento'];
-			$obj->ID_Usuario = $res['ID_Usuario'];
+			$obj->ID_usuarios = $res['ID_usuarios'];
 			$obj->ID_mesa = $res['ID_mesa'];
-			
+			$obj->nomeUser = $res['nomeUser'];
 			$retorno[] = $obj;
 		}
 		return $retorno;
@@ -70,7 +71,7 @@ class Vendas{
 			$obj->Status = $req['Status'];
 			$obj->Valor_total = $req['Valor_total'];
 			$obj->Forma_pagamento = $req['Forma_pagamento'];
-			$obj->ID_Usuario = $req['ID_Usuario'];
+			$obj->ID_usuarios = $req['ID_usuarios'];
 			$obj->ID_mesa = $req['ID_mesa'];
 			
 			}

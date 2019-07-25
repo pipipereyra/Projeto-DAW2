@@ -4,23 +4,27 @@ include_once "../topo.php";
 	$obj = new Usuarios();
 	
 	$obj->ID =$_POST['ID'];
-	$obj->Nome = $_POST['Nome'];
-	$obj->E_mail = $_POST['E_mail'];
-	$obj->Nascimento = $_POST['Nascimento'];
-	$obj->RG = $_POST['RG'];
-	$obj->Tipo = $_POST['Tipo'];
-	$obj->Senha = $_POST['Senha'];
-	$obj->CPF = $_POST['CPF'];
-	$obj->Endereco = $_POST['Endereco'];
+	$obj->Nome = strip_tags($_POST['Nome']);
+	$obj->E_mail = strip_tags($_POST['E_mail']);
+	$obj->Nascimento = strip_tags($_POST['Nascimento']);
+	$obj->RG = strip_tags($_POST['RG']);
+	$obj->Tipo = strip_tags($_POST['Tipo']);
+	$obj->Senha = strip_tags(md5($_POST['Senha']));
+	$obj->CPF = strip_tags($_POST['CPF']);
+	$obj->Endereco = strip_tags($_POST['Endereco']);
 	$obj->editar();
 	$resultado = $obj->editar();
-	if ($resultado)
-		echo "Editado com sucesso!";
-	else
-		echo "Usuario não pode ser editado";
+	if ($resultado){
+	echo "<div style='text-align:center;' class='alert alert-success'> 
+	<strong>Editado com sucesso!</strong>
+	</div>";
+	header("Refresh:3; url=listausu.php");}
+	else{
+		echo "<div style='text-align:center;' class='alert alert-danger'>
+		<strong>Usuário não pode ser editado!</strong>
+		</div>";
+		header("Refresh:3; url=listausu.php");}
 ?>
-
-<br><button style="margin-left:255px; margin-top:5px;" onclick='window.location.href="listausu.php"'>Voltar</button><br>
 
 <?php
 	include_once "../rodape.php";

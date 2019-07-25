@@ -11,12 +11,18 @@
 		</div>
 	
 		<form action="addcat_ok.php" method="post">
-			<h2> &nbsp &nbsp &nbsp Adicionar Categoria &nbsp &nbsp</h2>
-			<input style= "width: 200px; margin-left:50px" type="text" name= "Nome" placeholder="Escreva a nova categoria">
-			<input type="submit" name="adicionar" value="Adicionar">
-			
+			<h2 style="text-align:center;"> &nbsp &nbsp &nbsp Adicionar Categoria &nbsp &nbsp</h2>
+			<div class="container mt-3">
+				<div class="input-group mb-3">
+					<input type="text" class="form-control" name="Nome" placeholder="Escreva a nova categoria">
+					<button class="btn btn-sucess" style="border:0.5px solid gray; background:#4ECDC4; color: white" type="submit" name="adicionar" value="Adicionar">
+					Adicionar</button>
+					<a type="button" class="btn btn-success" style="border:0.5px solid gray; background:#4ECDC4; color: white" onclick='window.location.href="listacat.php"'>
+					Voltar</a>
+				</div>
+			</div>
 		</form>
-		<button style="margin-left:253px; margin-top:5px; width:72px; display:inline-block" onclick='window.location.href="listacat.php"'>Voltar</button><br>
+		
 <?php
 	
 	if(isset($_GET['erro'])){
@@ -38,6 +44,6 @@
 		<a type="button" class="btn" style="background:#4ECDC4; color: white" href="../produto/produto.php">Adicionar Produtos</a>
 		<a type="button" class="btn" style="background:#4ECDC4; color: white" href="../comanda/listavenda.php">Listar Vendas</a>
 		</div>
-	<script>
+	<!-- <script>
 		document.getElementById("categoria").classList.add("active");
-	</script>
+	</script> -->

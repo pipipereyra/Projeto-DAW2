@@ -12,25 +12,26 @@
 		<a type="button" class="btn" style="background:#4ECDC4; color: white" href="../comanda/listavenda.php">Listar Vendas</a>
 		<a type="button" class="btn" style="background:#4ECDC4; color: white" href="../usuario/logout.php">Sair</a>
 		</div>
-	<!-- <a class="btn btn-info" style="margin-left:10px; margin-top:15px; background:#4ECDC4; color: white" href="addcategorias.php">Adicionar Categoria</a> -->
 	
-	<h2 style="margin-left:10px;">Listar Categorias</h2>
+	<h2 style="text-align:center;">Listar Categorias</h2>
 	<form>
-		<input style= "width: 200px; margin-left:10px" type="text" name="Buscar" placeholder="Buscar"/>
-		<input type="submit" value="Enviar">
-		<button style="margin-left:2px; margin-top:5px;" onclick='window.location.href="listar.php"'>Voltar</button><br>
+	<div class="container mt-3">
+		<div class="input-group mb-3">
+			<input class="form-control" style= "width: 200px; margin-left:10px" type="text" name="Buscar" placeholder="Buscar"/>
+			<button class="btn btn-primary" style="border:0.5px solid gray; background:#4ECDC4; color: white" type="submit" value="Enviar">Enviar</button>
+			<button class="btn btn-success" style="border:0.5px solid gray; background:#4ECDC4; color: white" onclick='window.location.href="listar.php"'>Voltar</button><br>
 	</form>
 	
 
 <?php
 	$objCategorias = new Categorias;
 	if(isset($_GET['Buscar']))
-		$retorno = $objCategorias->listar('where ID="'.$_GET['Buscar'].'" or Nome like "'.$_GET['Buscar'].'"');
+		$retorno = $objCategorias->listar('where ID="'.$_GET['Buscar'].'" or Nome like "%'.$_GET['Buscar'].'%"');
 	else	
 		$retorno = $objCategorias-> listar();
-	echo "<table border style='margin:25px'>
+	echo "<div class='container'>
+	<table class='table table-hover'>
 		<thead>
-			<th>ID</th>
 			<th>Nome</th>
 			<th colspan='2'>Açoes</th>
 		</thead>
@@ -40,14 +41,13 @@
 		else {
 			foreach ($retorno as $linha){
 			echo "<tr>
-					<td>$linha->ID</td>
 					<td>$linha->Nome</td>
 					<td style= 'padding:5px'><a href='editcat.php?ID=$linha->ID' >Editar</a></td>
 					<td style= 'padding:5px'><a href='apagarcat.php?ID=$linha->ID' >Apagar</a></td>
 			   </tr>";
 			}
 		}
-		echo "</tbody></table>";
+		echo "</tbody></table></div>";
 		
 		include_once "../rodape.php";
 ?>
@@ -57,6 +57,6 @@
 		<a type="button" class="btn" style="background:#4ECDC4; color: white" href="../produto/produto.php">Adicionar Produtos</a>
 		<a type="button" class="btn" style="background:#4ECDC4; color: white" href="../comanda/listavenda.php">Listar Vendas</a>
 		</div>
-	<script>
+	<!-- <script>
 		document.getElementById("categoria").classList.add("active");
-	</script>
+	</script> -->

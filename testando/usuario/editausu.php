@@ -7,29 +7,53 @@
 	//var_dump($resultado);
 ?>
 	<form action="editausu_ok.php" method="post">
-			<h2> &nbsp &nbsp &nbsp Editar Usuarios &nbsp &nbsp</h2>
-			<span> &nbsp &nbsp &nbsp Edite o usuario:</span><br>
-			Nome:
-			<input style= "width: 200px; margin-left:2px" type="text" name="Nome" value="<?php echo $resultado->Nome;?> "/><br>
-			E-mail:
-			<input style= "width: 200px; margin-left:2px" type="text" name="E_mail" value="<?php echo $resultado->E_mail;?> "/><br>
-			Data de Nascimento:
-			<input style= "width: 200px; margin-left:2px" type="text" name="Nascimento" value="<?php echo $resultado->Nascimento;?> "/><br>
-			RG:
-			<input style= "width: 200px; margin-left:2px" type="text" name="RG" value="<?php echo $resultado->RG;?> "/><br>
-			Tipo de Usuario:
-			<input style= "width: 200px; margin-left:2px" type="text" name="Tipo" value="<?php echo $resultado->Tipo;?> "/><br>
-			Senha:
-			<input style= "width: 200px; margin-left:2px" type="text" name="Senha" value="<?php echo $resultado->Senha;?> "/><br>
-			CPF:
-			<input style= "width: 200px; margin-left:2px" type="text" name="CPF" value="<?php echo $resultado->CPF;?> "/><br>
-			Endereco:
-			<input style= "width: 200px; margin-left:2px" type="text" name="Endereco" value="<?php echo $resultado->Endereco;?> "/><br>
+		<h2 style="text-align:center;"> &nbsp &nbsp &nbsp Editar Usuarios &nbsp &nbsp</h2>
+		<label style="text-align:center;"> &nbsp &nbsp &nbsp Edite o usuario:</label>
+		<div class="container">
+			<div class="input-group mb-3" style="flex-direction: column;">	
+					<div class="input-group-prepend">
+					<span class="input-group-text">Nome</span>
+						<input class="form-control" type="text" name="Nome" value="<?php echo $resultado->Nome;?> "/>
+					</div>
+					<div class="input-group-prepend">
+						<span class="input-group-text">E-mail:</span>
+						<input class="form-control" type="text" name="E_mail" value="<?php echo $resultado->E_mail;?> "/>
+					</div>
+					<div class="input-group-prepend">
+						<span class="input-group-text">Data de Nascimento:</span>
+						<input class="form-control" type="text" name="Nascimento" value="<?php echo $resultado->Nascimento;?> "/>
+					</div>
+					<div class="input-group-prepend">
+						<span class="input-group-text">RG:</span>
+						<input class="form-control" type="text" name="RG" value="<?php echo $resultado->RG;?> "/>
+					</div>
+					<div class="input-group-prepend">
+						<span class="input-group-text">Tipo de Usuario:</span>
+						<input class="form-control" type="text" name="Tipo" value="<?php echo $resultado->Tipo;?> "/>
+					</div>
+					<div class="input-group-prepend">
+						<span class="input-group-text">Senha:</span>
+						<input class="form-control" type="text" name="Senha" value="<?php echo $resultado->Senha;?> "/>
+					</div>
+					<div class="input-group-prepend">
+						<span class="input-group-text">CPF:</span>
+						<input class="form-control" type="text" name="CPF" value="<?php echo $resultado->CPF;?> "/>
+					</div>
+					<div class="input-group-prepend">
+						<span class="input-group-text">Endereco:</span>
+						<input class="form-control" type="text" name="Endereco" value="<?php echo $resultado->Endereco;?> "/>
+					</div>
 
-			<input style= "display:none;" type="text" name= "ID" value="<?php echo $resultado->ID;?> "/>
-			<input type="submit" name="adicionar" value="Editar">
-			<br><button style="margin-left:327px; margin-top:5px;"onclick='window.location.href="listausu.php"'>Voltar</button><br>
-		</form>
+					<input style= "display:none;" type="text" name= "ID" value="<?php echo $resultado->ID;?> "/>
+					<div class="input-group-append">
+						
+						<button class="btn" style="border:0.5px solid gray; background:#4ECDC4; color: white" type="submit" name="adicionar" value="Editar">Editar</button>
+						<button class="btn" style="border:0.5px solid gray; background:#4ECDC4; color: white;" onclick='window.location.href="listausu.php"'>Voltar</button>
+						
+					</div>
+			</div>
+		</div>
+	</form>
 
 
 <?php

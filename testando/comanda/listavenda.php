@@ -13,48 +13,73 @@
 		<a type="button" class="btn" style="background:#4ECDC4; color: white" href="../usuario/logout.php">Sair</a>
 		</div>
 	
-	<h2 style="margin-left:10px;">Listar Vendas</h2>
+	<h2 style="text-align:center;">Listar Vendas</h2>
 	<form>
-		<input style= "width: 200px; margin-left:10px" type="text" name="Buscar" placeholder="Buscar"/>
-		<input type="submit" value="Enviar">
-		<button style="margin-left:2px; margin-top:5px;" onclick='window.location.href="listavenda.php"'>Voltar</button><br>
+		<div class="container mt-3">
+			<div class="input-group mb-3">
+				<input class="form-control" type="text" name="Buscar" placeholder="Buscar"/>
+				<div class="input-group-append">
+					<input class="btn btn-success" style="border:0.5px solid, gray; background:#4ECDC4; color: white" type="submit" value="Enviar">
+					<button class="btn btn-success" style="border:0.5px solid, gray; background:#4ECDC4; color: white" onclick='window.location.href="listavenda.php"'>Voltar</button>
+				</div>
+			</div>
+		</div>
 	</form>
 	
 
 <?php
 	$obj = new Vendas;
 	if(isset($_GET['Buscar']))
-		$retorno = $obj->listar('where ID="'.$_GET['Buscar'].'" or Nome like "'.$_GET['Buscar'].'"');
+		$retorno = $obj->listar('where comanda.ID = "'.$_GET['Buscar'].'" or comanda.ID_mesa = "'.$_GET['Buscar'].'"');
 	else	
 		$retorno = $obj-> listar();
-	echo "<table border style='margin:25px'>
+	echo "<div class='container'>
+	<table class='table table-hover'>
+	 
 		<thead>
-			<th>ID</th>
 			<th>Data_venda</th>
 			<th>Status</th>
 			<th>Valor_total</th>
 			<th>Forma_pagamento</th>
-            <th>ID_Usuario</th>
+            <th>ID_usuarios</th>
             <th>ID_mesa</th>
 			
 		</thead>
 		<tbody>";
 		if($retorno ==''){
-		echo "Sua busca não retornou nenhum resultado, tente novamente";}
+			echo "Sua busca não retornou nenhum resultado, tente novamente";
+		}
 		else {
 			foreach ($retorno as $linha){
+				if ($linha->Status == 0){
+					$statusOk = "Pedido Realizado";
+				}
+				elseif($linha->Status == 1){
+					$statusOk = "Em Andamento";
+					}
+				else{
+					$statusOk = "Pedido Pronto";
+				}
+				if ($linha->Forma_pagamento == 0){
+					$pagamentoOk = "Dinheiro";
+				}
+				elseif($linha->Forma_pagamento == 1){
+					$pagamentoOk = "Débito";
+				}
+				else{
+					$pagamentoOk = "Crédito";
+				}
 			echo "<tr>
-					<td>$linha->ID</td>
-					<td>$linha->Data_venda</td>
-					<td>$linha->Status</td>
+					<td>".date("d/m/Y", strtotime($linha->Data_venda))."</td>
+					<td>$statusOk</td>
                     <td>$linha->Valor_total</td>
-                    <td>$linha->Forma_pagamento</td>
-                    <td>$linha->ID_Usuario</td>
+                    <td>$pagamentoOk</td>
+                    <td>$linha->nomeUser</td>
                     <td>$linha->ID_mesa</td>
 			   </tr>";
 			}
 		}
-		echo "</tbody></table>";
+		echo "</tbody></table></div>";
 		
 		include_once "../rodape.php";
 ?>

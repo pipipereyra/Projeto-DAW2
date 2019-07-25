@@ -11,6 +11,7 @@ class Usuarios{
 		private $Endereco;
 		private $conexao; //inicia uma conexão com o banco de dados
 		private $tabela; //para facilitar o uso das tabelas no banco(editar, alterar) sem complicações
+		
 		public function __construct(){
 			$this->conexao = mysqli_connect("localhost", "root", "", "bancopietro") //inicia a conexão com o banco de dados
 			or die("Erro de Conexão no Banco");
@@ -34,7 +35,7 @@ class Usuarios{
 			return $resultado;
 		}
 		public function listar($complemento = ""){
-			$sql = "SELECT * FROM $this->tabela ".$complemento;;
+			$sql = "SELECT * FROM $this->tabela ".$complemento;
 			$resultado = mysqli_query($this->conexao, $sql);
 		 //echo $sql;
 		$retorno = null;

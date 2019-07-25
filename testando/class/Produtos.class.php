@@ -33,8 +33,8 @@ class Produtos{
 			return $resultado;
 		}
 		public function listar($complemento = ""){
-			$sql = "SELECT $this->tabela.*,categorias.nome as categorias FROM $this->tabela inner join categorias on $this->tabela.ID_Categoria=categorias.ID".$complemento;
-			$resultado = mysqli_query($this->conexao, $sql);
+			$sql = "SELECT $this->tabela.*,categorias.nome as categorias FROM $this->tabela inner join categorias on $this->tabela.ID_Categoria=categorias.ID ".$complemento;
+			$resultado=mysqli_query($this->conexao, $sql);
 		 //echo $sql;
 		$retorno = null;
 		//var_dump($resultado);
@@ -46,9 +46,9 @@ class Produtos{
 			$obj->Descricao=$res['Descricao'];
 			$obj->Valor=$res['Valor'];
 			$obj->ID_Categoria=$res['categorias'];
-			
 			$retorno[] = $obj;
 		}
+		
 		return $retorno;
 		}
 		public function apagar(){

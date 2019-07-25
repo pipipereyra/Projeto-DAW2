@@ -7,14 +7,19 @@
 	$obj = new Categorias();
 	$obj->ID = $_GET['ID'];
 	$resultado = $obj->apagar();
-	if ($resultado)
-		echo "Excluido com sucesso!";
-	else
-		echo "Categoria não pode ser excluida";
+	if ($resultado){
+		echo " <div style='text-align:center;' class='alert alert-success'>
+		<strong>Excluido com sucesso!</strong>
+		</div>";
+		header("Refresh:3; url=listacat.php");}
+	else{
+		echo "<div style='text-align:center;' class='alert alert-danger'>
+		<strong>Categoria não pode ser excluida</strong>
+		</div>";
+		header("Refresh:3; url=listacat.php");}
 	
 
 ?>
-<br><button style="margin-left:255px; margin-top:5px;" onclick='window.location.href="listacat.php"'>Voltar</button><br>
 
 <?php
 	include_once "../rodape.php";
